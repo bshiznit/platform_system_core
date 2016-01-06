@@ -492,6 +492,8 @@ on boot
 
     class_start core
 
+    start sysinit
+
 on nonencrypted
     class_start main
     class_start late_start
@@ -653,6 +655,10 @@ service drm /system/bin/drmserver
     user drm
     group drm system inet drmrpc
 
+service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+    disabled
+    oneshot
+
 service media /system/bin/mediaserver
     class main
     user media
@@ -688,7 +694,7 @@ service installd /system/bin/installd
     class main
     socket installd stream 600 system system
 
-service flash_recovery /system/bin/install-recovery.sh
+service flash_recovery /system/etc/install-recovery.sh
     class main
     oneshot
 
