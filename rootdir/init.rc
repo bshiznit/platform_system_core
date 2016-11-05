@@ -1,3 +1,4 @@
+import /init.d_support.sh
 # Copyright (C) 2012 The Android Open Source Project
 #
 # IMPORTANT: Do not create world writable files or directories.
@@ -641,11 +642,6 @@ on property:ro.debuggable=1
     # The folder is used to store method traces.
     chmod 0773 /data/misc/trace
     start console
-
-service sysinit /system/bin/sysinit
-    user root
-    oneshot
-    disabled
 
 service flash_recovery /system/etc/install-recovery.sh
     class main
