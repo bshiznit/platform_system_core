@@ -580,6 +580,7 @@ int main(int argc, char **argv)
           { "buffer",        required_argument, NULL,   'b' },
           { "buffer-size",   optional_argument, NULL,   'g' },
           { "clear",         no_argument,       NULL,   'c' },
+          { "color",         no_argument,       NULL,   'C' },
           { "dividers",      no_argument,       NULL,   'D' },
           { "file",          required_argument, NULL,   'f' },
           { "format",        required_argument, NULL,   'v' },
@@ -603,7 +604,7 @@ int main(int argc, char **argv)
           { NULL,            0,                 NULL,   0 }
         };
 
-        ret = getopt_long(argc, argv, ":cdDLt:T:gG:sQf:r:n:v:b:BSpP:m:e:",
+        ret = getopt_long(argc, argv, ":cdDLt:T:gG:sQf:r:n:v:b:BSpCP:m:e:",
                           long_options, &option_index);
 
         if (ret < 0) {
@@ -760,6 +761,10 @@ int main(int argc, char **argv)
 
             case 'P':
                 setPruneList = optarg;
+            break;
+
+            case 'C':
+                setLogFormat ("color");
             break;
 
             case 'b': {
